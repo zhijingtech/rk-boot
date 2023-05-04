@@ -14,8 +14,9 @@ import (
 	"path/filepath"
 	"runtime/debug"
 
+	"github.com/google/uuid"
 	rkentry "github.com/rookie-ninja/rk-entry/v2/entry"
-	rkmid "github.com/rookie-ninja/rk-entry/v2/middleware"
+	// rkmid "github.com/rookie-ninja/rk-entry/v2/middleware"
 	"go.uber.org/zap"
 )
 
@@ -81,7 +82,7 @@ func NewBoot(opts ...BootOption) *Boot {
 	defer syncLog("N/A")
 
 	boot := &Boot{
-		EventId:       rkmid.GenerateRequestId(nil),
+		EventId:       uuid.NewString(),
 		beforeHookF:   newHookFuncM(),
 		afterHookF:    newHookFuncM(),
 		pluginEntries: map[string]map[string]rkentry.Entry{},
